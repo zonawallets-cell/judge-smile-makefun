@@ -13,6 +13,8 @@ phrasing).
 
 import os
 
+MAX_CHARS = 200
+
 LINE = "The bus driver waited for an old man with a cane this morning, then caught my eye in the mirror and winked like we'd both passed a secret test."
 
 
@@ -21,8 +23,8 @@ def validate(line):
     if not isinstance(line, str):
         raise ValueError("line must be a string")
     line.encode("utf-8")
-    if not 1 <= len(line) <= 200:
-        raise ValueError("line must be 1-200 characters, got %d" % len(line))
+    if not 1 <= len(line) <= MAX_CHARS:
+        raise ValueError("line must be 1-%d characters, got %d" % (MAX_CHARS, len(line)))
     if not line.strip():
         raise ValueError("line must not be only whitespace")
     if "\n" in line or "\r" in line:
